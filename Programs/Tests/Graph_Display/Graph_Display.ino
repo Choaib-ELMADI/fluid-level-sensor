@@ -3,14 +3,11 @@
 
 const float a = -0.022;
 const float b = 8.646;
+int8_t type = -1;
 
 U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE);
 
-const uint8_t buttonPin = A0;
-bool buttonPressed = false;
-uint8_t state = 0;
-
-int voltageInPin;
+int voltageInPin = 525;
 float inputVoltage, trueInputVoltage;
 float level, voltage;
 
@@ -20,22 +17,9 @@ void drawPint(int, int, int8_t);
 void setup() {
     Serial.begin(9600);
     u8g2.begin();
-
-    pinMode(buttonPin, INPUT);
 }
 
 void loop() {
-    if (digitalRead(buttonPin) && !buttonPressed) {
-        state++;
-        if (state > 2) {
-            state = 0;
-        }
-        buttonPressed = true;
-    } else if (!digitalRead(buttonPin)) {
-        buttonPressed = false;
-    }
-
-    voltageInPin = analogRead(A1);
     inputVoltage = voltageInPin * (5.0 / 1023.0);
     trueInputVoltage = (16.15 / 6.58) * inputVoltage;
 
@@ -48,29 +32,11 @@ void loop() {
 
     u8g2.clearBuffer();
 
-    switch (state) {
-    case 0:
-        u8g2.setFont(u8g2_font_ncenB08_tr);
-        u8g2.setCursor(20, 10);
-        u8g2.print("Mesures (mm)");
+    drawGraph(type);
 
-        u8g2.setFont(u8g2_font_ncenB10_tr);
-        u8g2.setCursor(0, 30);
-        u8g2.print("Entree  :  " + String(trueInputVoltage) + " V");
-        u8g2.setCursor(0, 45);
-        u8g2.print("Niveau  :  " + String(level));
-        u8g2.setCursor(0, 60);
-        u8g2.print("Tension:  " + String(voltage) + " V");
-        break;
-    case 1:
-        drawGraph(1);
-        drawPoint((int)level, (int)trueInputVoltage, 1);
-        break;
-    case 2:
-        drawGraph(-1);
-        drawPoint((int)level, (int)trueInputVoltage, -1);
-        break;
-    }
+    int x = 300;
+    int y = a * x + b;
+    drawPoint(x, y, type);
 
     u8g2.sendBuffer();
 }
