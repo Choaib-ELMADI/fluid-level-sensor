@@ -1,6 +1,15 @@
+[![Choaib ELMADI - Sensors](https://img.shields.io/badge/Choaib_ELMADI-Sensors-8800dd)](https://elmadichoaib.vercel.app)
+
 # Water Level Monitoring System
 
 This project demonstrates a water level monitoring system using an ultrasonic sensor and an Arduino. The system measures the water level in a container based on input voltage and displays the height on an OLED screen. Future enhancements include integrating a PID controller for automated water level regulation.
+
+<div align="center">
+
+![Circuit Diagram](./Images/circuit-diagram.png)
+![Project Steps](./Images/steps.png)
+
+</div>
 
 ## System Overview
 
