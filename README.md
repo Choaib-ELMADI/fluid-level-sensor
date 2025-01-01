@@ -6,10 +6,25 @@ This project demonstrates a water level monitoring system using an ultrasonic se
 
 <div align="center">
 
-![Circuit Diagram](./Images/circuit-diagram.png)
-![Project Steps](./Images/steps.png)
+![Proteus Circuit](./Images/proteus-circuit.png)
 
 </div>
+
+## Project Structure
+
+```
+.
+├── 3D Models/
+├── Circuit Diagram/
+│ ├── circuit-diagram.png
+│ └── proteus-simulation.pdsprj
+├── Images/
+├── Programs/
+│ ├── Main/
+│ │ └── Main.ino
+│ └── Tests/
+└── README.md
+```
 
 ## System Overview
 
@@ -29,6 +44,13 @@ The water container setup includes:
 - OLED display
 - Power supply
 - 3D-printed enclosure
+
+<div align="center">
+
+![Circuit Diagram](./Images/circuit-diagram.png)
+![Project Steps](./Images/steps.png)
+
+</div>
 
 ## How It Works
 

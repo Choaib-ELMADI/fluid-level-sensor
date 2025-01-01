@@ -1,2 +1,5 @@
 *.dll
 ALPS.pdsprj
+
+*.workspace
+Project*Backups
